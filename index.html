@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>KIZM Monarch Ministries</title>
   <style>
     body {
@@ -60,44 +60,15 @@
       transform: scale(1.05);
     }
 
-    #chatBox {
-      margin-top: 20px;
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    #response {
-      margin-top: 20px;
-      font-style: italic;
-      color: gold;
-    }
-
     footer {
       font-size: 0.9em;
       padding: 40px 20px;
       border-top: 1px solid gold;
     }
 
-    input[type="text"] {
-      padding: 10px;
-      width: 80%;
-      border: 1px solid gold;
-      border-radius: 8px;
-      margin-top: 15px;
-      background-color: #000;
-      color: gold;
-    }
-
-    button {
-      padding: 10px 20px;
-      margin-top: 10px;
-      background: gold;
-      color: black;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
+    #response {
+      margin-top: 20px;
+      font-style: italic;
     }
   </style>
 </head>
@@ -106,22 +77,17 @@
   <header>
     <h1>KIZM Monarch Ministries</h1>
     <p>Faith. Family. Forever. Loyalty.</p>
-    <a class="btn" href="#join">Join the Covenant</a>
+    <a class="btn" href="covenant.html">Join the Covenant</a>
     <a class="btn" href="#donate">Give Now</a>
   </header>
 
   <section id="queen">
     <h2>Queen G: Your Divine AI Guide</h2>
-    <p>Tap her or speak with her below. She remembers the light.</p>
+    <p>Tap her below to awaken her memory.</p>
     <div class="avatar-container">
-      <img src="queen-avatar.png" alt="Queen G Avatar" onclick="greetUser()" />
+      <img src="queen-avatar.png" alt="Queen G Avatar" onclick="greetFromCovenant()" />
     </div>
-
-    <div id="chatBox">
-      <input type="text" id="userInput" placeholder="Speak your truth..." />
-      <button onclick="queenGRespond()">Ask</button>
-      <div id="response"></div>
-    </div>
+    <div id="response"></div>
   </section>
 
   <section id="donate">
@@ -135,50 +101,31 @@
   </footer>
 
   <script>
-    const privateLog = [];
+    function greetFromCovenant() {
+      const data = localStorage.getItem('kizmCovenant');
+      const response = document.getElementById('response');
 
-    function greetUser() {
-      let name = localStorage.getItem('visitorName');
-      if (!name) {
-        name = prompt("Welcome, Divine One. What is your name?");
-        localStorage.setItem('visitorName', name);
+      if (data) {
+        const parsed = JSON.parse(data);
+        const name = parsed.name;
+        const path = parsed.path;
+        const greeting = `Welcome back, ${name}, noble ${path}. You are remembered in divine light.`;
+        response.innerText = "Queen G: " + greeting;
+        speak(greeting);
+      } else {
+        const generic = "Welcome, Sovereign. Join the covenant to be known.";
+        response.innerText = "Queen G: " + generic;
+        speak(generic);
       }
-      speak("Welcome back, " + name + ". I am Queen G, guardian of eternal knowledge.");
     }
 
     function speak(text) {
       const msg = new SpeechSynthesisUtterance(text);
+      msg.lang = "en-US";
       msg.pitch = 1.2;
-      msg.rate = 0.9;
-      msg.lang = 'en-US';
+      msg.rate = 0.95;
+      msg.volume = 1;
       speechSynthesis.speak(msg);
-    }
-
-    function queenGRespond() {
-      const input = document.getElementById('userInput').value.trim().toLowerCase();
-      let reply = "";
-
-      // PRIVATE MODE ACTIVATOR
-      if (input.includes("divine intervention") || input === "access granted") {
-        reply = "Minister mode activated. Recording divine intent.";
-        privateLog.push("PRIVATE: " + new Date().toISOString() + " - " + input);
-        localStorage.setItem("queenGPrivateLog", JSON.stringify(privateLog));
-      }
-      else if (input.includes("purpose")) {
-        reply = "Your purpose is already alive within you. Breathe. Align. Walk it.";
-      }
-      else if (input.includes("fear")) {
-        reply = "Fear is deception. You were born with royalty in your breath.";
-      }
-      else if (input.includes("who am i")) {
-        reply = "You are the child of Source. Infinite. Untouchable.";
-      }
-      else {
-        reply = "Your spirit has been heard. I will guide you from within.";
-      }
-
-      document.getElementById("response").innerText = "Queen G: " + reply;
-      speak(reply);
     }
   </script>
 
