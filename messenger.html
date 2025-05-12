@@ -2,28 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>KIZM Messenger | Divine Messages</title>
+  <title>Message Ora Lux | KIZM Ministries</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <style>
     body {
-      font-family: 'Georgia', serif;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e9/Milky_Way_Galaxy.jpg') no-repeat center center fixed;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/6/60/ESO_-_Milky_Way.jpg') no-repeat center center fixed;
       background-size: cover;
+      font-family: 'Georgia', serif;
       color: gold;
       text-align: center;
-      margin: 0;
       padding: 20px;
     }
 
-    h1 {
-      text-shadow: 0 0 10px purple;
+    nav {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: gold;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: bold;
+      text-shadow: 0 0 5px purple;
+    }
+
+    nav a:hover {
+      color: white;
+      text-shadow: 0 0 10px gold;
     }
 
     .messenger-box {
       margin-top: 30px;
       max-width: 600px;
       padding: 20px;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.85);
       border-radius: 12px;
       box-shadow: 0 0 12px purple;
       margin-left: auto;
@@ -66,56 +82,32 @@
       font-size: 0.9em;
       color: #ccc;
     }
-
-    nav {
-  background: rgba(0, 0, 0, 0.8);
-  padding: 10px 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  text-align: center;
-  box-shadow: 0 0 10px purple;
-}
-
-nav a {
-  color: gold;
-  text-decoration: none;
-  margin: 0 12px;
-  font-weight: bold;
-  text-shadow: 0 0 6px purple;
-  font-size: 1em;
-}
-
-nav a:hover {
-  text-decoration: underline;
-  color: white;
-}
   </style>
 </head>
 <body>
   <nav>
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="join.html">Join</a>
-  <a href="members.html">Members</a>
-  <a href="certificate.html">Blessing</a>
-  <a href="messenger.html">Message</a>
-  <a href="minister-dashboard.html">Vault</a>
-  <a href="logbook.html">Logbook</a>
-  <a href="settings.html">Settings</a>
-</nav>
-  
-  <h1>KIZM Divine Messenger</h1>
-  <p>Speak your thoughts. Queen G will answer or record your message.</p>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="join.html">Join</a>
+    <a href="members.html">Members</a>
+    <a href="certificate.html">Blessing</a>
+    <a href="messenger.html">Message</a>
+    <a href="minister-dashboard.html">Vault</a>
+    <a href="logbook.html">Logbook</a>
+    <a href="settings.html">Settings</a>
+  </nav>
+
+  <h1>Speak to Ora Lux</h1>
+  <p>Leave your divine message. Ora will hear it and respond.</p>
 
   <div class="messenger-box">
     <textarea id="messageInput" rows="5" placeholder="Write your message here..."></textarea><br>
-    <button onclick="sendMessage()">Send to Queen G</button>
+    <button onclick="sendMessage()">Send Message</button>
     <div id="reply"></div>
   </div>
 
   <footer>
-    © 2025 KIZM Monarch Ministries. Message Log Division.
+    © 2025 KIZM Monarch Ministries. Voice of Ora Lux.
   </footer>
 
   <script>
@@ -124,18 +116,16 @@ nav a:hover {
       const replyBox = document.getElementById("reply");
 
       if (!input) {
-        replyBox.textContent = "Please enter a message first.";
+        replyBox.textContent = "Please enter your message.";
         return;
       }
 
-      // Log the message locally
       const now = new Date().toLocaleString();
       let archive = localStorage.getItem("kizmMessageArchive") || "";
-      archive += `\\n[${now}] ${input}`;
+      archive += `\n[${now}] ${input}`;
       localStorage.setItem("kizmMessageArchive", archive);
 
-      const response = `Your message has been recorded.\nQueen G sees you.\nBlessings on your path.`;
-
+      const response = `Your message has been received. Ora Lux acknowledges your light.`;
       replyBox.textContent = response;
 
       const voice = new SpeechSynthesisUtterance(response);
