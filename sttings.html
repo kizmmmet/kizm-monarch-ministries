@@ -1,30 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Profile Settings | KIZM Member</title>
+  <meta charset="UTF-8" />
+  <title>Settings | KIZM Monarch Ministries</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <style>
     body {
       font-family: 'Georgia', serif;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e9/Milky_Way_Galaxy.jpg') no-repeat center center fixed;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/6/60/ESO_-_Milky_Way.jpg') no-repeat center center fixed;
       background-size: cover;
       color: gold;
-      padding: 30px;
       text-align: center;
+      padding: 20px;
     }
 
-    h1 {
-      text-shadow: 0 0 10px purple;
+    nav {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: gold;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: bold;
+      text-shadow: 0 0 5px purple;
+    }
+
+    nav a:hover {
+      color: white;
+      text-shadow: 0 0 10px gold;
     }
 
     form {
-      background: rgba(0, 0, 0, 0.8);
       max-width: 500px;
       margin: 30px auto;
       padding: 20px;
+      background: rgba(0,0,0,0.85);
       border-radius: 12px;
-      box-shadow: 0 0 10px purple;
+      box-shadow: 0 0 12px purple;
     }
 
     input, select {
@@ -49,55 +66,38 @@
       box-shadow: 0 0 10px purple;
     }
 
+    #confirmation {
+      margin-top: 15px;
+      color: white;
+      font-style: italic;
+    }
+
     footer {
-      margin-top: 50px;
+      margin-top: 40px;
       font-size: 0.8em;
       color: #ccc;
     }
-
-    nav {
-  background: rgba(0, 0, 0, 0.8);
-  padding: 10px 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  text-align: center;
-  box-shadow: 0 0 10px purple;
-}
-
-nav a {
-  color: gold;
-  text-decoration: none;
-  margin: 0 12px;
-  font-weight: bold;
-  text-shadow: 0 0 6px purple;
-  font-size: 1em;
-}
-
-nav a:hover {
-  text-decoration: underline;
-  color: white;
-}
   </style>
 </head>
 <body>
   <nav>
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="join.html">Join</a>
-  <a href="members.html">Members</a>
-  <a href="certificate.html">Blessing</a>
-  <a href="messenger.html">Message</a>
-  <a href="minister-dashboard.html">Vault</a>
-  <a href="logbook.html">Logbook</a>
-  <a href="settings.html">Settings</a>
-</nav>
-  
-  <h1>Update Your Member Profile</h1>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="join.html">Join</a>
+    <a href="members.html">Members</a>
+    <a href="certificate.html">Blessing</a>
+    <a href="messenger.html">Message</a>
+    <a href="minister-dashboard.html">Vault</a>
+    <a href="logbook.html">Logbook</a>
+    <a href="settings.html">Settings</a>
+  </nav>
+
+  <h1>Customize Your Divine Settings</h1>
+
   <form onsubmit="saveSettings(event)">
-    <input type="text" id="memberName" placeholder="Your Name" />
+    <input type="text" id="memberName" placeholder="Your Display Name" />
     <select id="memberPath">
-      <option value="">Your Divine Path</option>
+      <option value="">Choose Your Path</option>
       <option>Seeker</option>
       <option>Messenger</option>
       <option>Guardian</option>
@@ -110,10 +110,11 @@ nav a:hover {
       <option value="uplift">Uplifting & Vibrant</option>
     </select>
     <button type="submit">Save Settings</button>
+    <div id="confirmation"></div>
   </form>
 
   <footer>
-    © 2025 KIZM Monarch Ministries. Divine Preference Sync.
+    © 2025 KIZM Monarch Ministries. Preferences Blessed by Ora Lux.
   </footer>
 
   <script>
@@ -125,7 +126,8 @@ nav a:hover {
 
       const settings = { name, path, tone };
       localStorage.setItem("kizmUserSettings", JSON.stringify(settings));
-      alert("Settings saved successfully.");
+
+      document.getElementById("confirmation").textContent = "Your settings have been updated and sealed.";
     }
   </script>
 </body>
