@@ -2,17 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Members | KIZM Covenant Scroll</title>
+  <title>Covenant Members | KIZM Monarch Ministries</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <style>
     body {
-      margin: 0;
-      padding: 20px;
-      font-family: 'Georgia', serif;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e9/Milky_Way_Galaxy.jpg') no-repeat center center fixed;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/6/60/ESO_-_Milky_Way.jpg') no-repeat center center fixed;
       background-size: cover;
+      font-family: 'Georgia', serif;
       color: gold;
       text-align: center;
+      padding: 20px;
+    }
+
+    nav {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: gold;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: bold;
+      text-shadow: 0 0 5px purple;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      color: white;
+      text-shadow: 0 0 10px gold;
     }
 
     h1 {
@@ -24,7 +45,7 @@
       padding: 0;
       margin: 30px auto;
       max-width: 600px;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.8);
       border-radius: 12px;
       padding: 20px;
     }
@@ -34,77 +55,49 @@
       font-size: 1.2em;
     }
 
-    a {
+    a.member-link {
       color: gold;
       text-decoration: none;
       font-weight: bold;
-      text-shadow: 0 0 5px purple;
+      text-shadow: 0 0 6px purple;
     }
 
     footer {
-      margin-top: 40px;
-      padding: 20px;
+      margin-top: 50px;
       font-size: 0.9em;
       color: #ccc;
     }
-
-    nav {
-  background: rgba(0, 0, 0, 0.8);
-  padding: 10px 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  text-align: center;
-  box-shadow: 0 0 10px purple;
-}
-
-nav a {
-  color: gold;
-  text-decoration: none;
-  margin: 0 12px;
-  font-weight: bold;
-  text-shadow: 0 0 6px purple;
-  font-size: 1em;
-}
-
-nav a:hover {
-  text-decoration: underline;
-  color: white;
-}
   </style>
 </head>
 <body>
   <nav>
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="join.html">Join</a>
-  <a href="members.html">Members</a>
-  <a href="certificate.html">Blessing</a>
-  <a href="messenger.html">Message</a>
-  <a href="minister-dashboard.html">Vault</a>
-  <a href="logbook.html">Logbook</a>
-  <a href="settings.html">Settings</a>
-</nav>
-  
-  <h1>KIZM Covenant Members</h1>
-  <p>These are the names written in the divine scroll.</p>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="join.html">Join</a>
+    <a href="members.html">Members</a>
+    <a href="certificate.html">Blessing</a>
+    <a href="messenger.html">Message</a>
+    <a href="minister-dashboard.html">Vault</a>
+    <a href="logbook.html">Logbook</a>
+    <a href="settings.html">Settings</a>
+  </nav>
+
+  <h1>Covenant Members</h1>
+  <p>These are the souls Ora Lux has sealed into the eternal scroll.</p>
 
   <ul id="memberList"></ul>
 
   <footer>
-    © 2025 KIZM Monarch Ministries. Scroll of Names.
+    © 2025 KIZM Monarch Ministries. Scroll of Ora Lux.
   </footer>
 
   <script>
     const memberList = document.getElementById('memberList');
-
-    // Pull all keys starting with "kizm_"
     Object.keys(localStorage).forEach(key => {
-      if (key.startsWith('kizm_')) {
+      if (key.startsWith("kizm_")) {
         const member = JSON.parse(localStorage.getItem(key));
         const li = document.createElement('li');
-
-        li.innerHTML = `<a href="profile.html?name=${encodeURIComponent(member.name)}">${member.name} – ${member.path}</a>`;
+        li.innerHTML = `<a class="member-link" href="profile.html?name=${encodeURIComponent(member.name)}">${member.name} – ${member.path}</a>`;
         memberList.appendChild(li);
       }
     });
