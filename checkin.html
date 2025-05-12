@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Check-In | KIZM Ministries</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e9/Milky_Way_Galaxy.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Georgia', serif;
+      color: gold;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      text-shadow: 0 0 12px purple;
+      font-size: 2.5em;
+    }
+
+    input {
+      width: 90%;
+      max-width: 400px;
+      padding: 12px;
+      margin: 12px 0;
+      border-radius: 10px;
+      border: none;
+      background: black;
+      color: gold;
+      font-size: 1em;
+    }
+
+    button {
+      padding: 10px 24px;
+      margin-top: 10px;
+      background: gold;
+      color: black;
+      font-weight: bold;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 10px purple;
+    }
+
+    .confirmation {
+      margin-top: 20px;
+      font-style: italic;
+      color: #fff;
+      white-space: pre-wrap;
+    }
+
+    footer {
+      margin-top: 60px;
+      font-size: 0.8em;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Check In to KIZM</h1>
+  <p>Affirm your divine presence today.</p>
+
+  <input type="text" id="checkinName" placeholder="Enter Your Full Name" />
+  <button onclick="logPresence()">Check In</button>
+
+  <div id="confirmation" class="confirmation"></div>
+
+  <footer>
+    © 2025 KIZM Monarch Ministries. Presence Logbook.
+  </footer>
+
+  <script>
+    function logPresence() {
+      const name = document.getElementById('checkinName').value.trim();
+      const confirm = document.getElementById('confirmation');
+
+      if (!name) {
+        confirm.textContent = "Please enter your full name.";
+        return;
+      }
+
+      const now = new Date().toLocaleString();
+      const entry = `[${now}] ${name} has checked in.`;
+      let log = localStorage.getItem("kizmCheckinLog") || "";
+      log += `\\n${entry}`;
+      localStorage.setItem("kizmCheckinLog", log);
+
+      const msg = `Thank you, ${name}. Your divine presence is acknowledged.`;
+      confirm.textContent = msg;
+
+      const speak = new SpeechSynthesisUtterance(msg);
+      speechSynthesis.speak(speak);
+    }
+  </script>
+</body>
+</html>
