@@ -1,33 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Certificate Generator | KIZM Ministries</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <title>Get Your Blessing | KIZM Ministries</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <style>
     body {
-      margin: 0;
       font-family: 'Georgia', serif;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e9/Milky_Way_Galaxy.jpg') no-repeat center center fixed;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/6/60/ESO_-_Milky_Way.jpg') no-repeat center center fixed;
       background-size: cover;
       color: gold;
       text-align: center;
       padding: 20px;
     }
 
+    nav {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: gold;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: bold;
+      text-shadow: 0 0 5px purple;
+    }
+
+    nav a:hover {
+      color: white;
+      text-shadow: 0 0 10px gold;
+    }
+
     h1 {
-      font-size: 2.2em;
-      text-shadow: 0 0 10px purple;
+      text-shadow: 0 0 12px purple;
     }
 
     form {
-      margin-top: 30px;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.85);
       padding: 20px;
-      border-radius: 12px;
       max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 30px auto;
+      border-radius: 12px;
+      box-shadow: 0 0 12px purple;
     }
 
     input, select {
@@ -35,26 +53,27 @@
       padding: 12px;
       margin: 12px 0;
       border-radius: 10px;
-      border: none;
       background: black;
       color: gold;
       font-size: 1em;
+      border: none;
     }
 
     button {
-      padding: 10px 24px;
+      padding: 10px 20px;
       background: gold;
       color: black;
       font-weight: bold;
       border-radius: 10px;
+      border: none;
       cursor: pointer;
       box-shadow: 0 0 10px purple;
     }
 
     .certificate {
-      margin-top: 40px;
+      margin-top: 30px;
       padding: 20px;
-      background: rgba(0, 0, 0, 0.9);
+      background: rgba(0,0,0,0.9);
       border: 2px solid gold;
       border-radius: 12px;
       max-width: 700px;
@@ -65,51 +84,26 @@
 
     footer {
       margin-top: 50px;
-      padding: 20px;
       font-size: 0.9em;
       color: #ccc;
     }
-
-    nav {
-  background: rgba(0, 0, 0, 0.8);
-  padding: 10px 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  text-align: center;
-  box-shadow: 0 0 10px purple;
-}
-
-nav a {
-  color: gold;
-  text-decoration: none;
-  margin: 0 12px;
-  font-weight: bold;
-  text-shadow: 0 0 6px purple;
-  font-size: 1em;
-}
-
-nav a:hover {
-  text-decoration: underline;
-  color: white;
-}
   </style>
 </head>
 <body>
   <nav>
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="join.html">Join</a>
-  <a href="members.html">Members</a>
-  <a href="certificate.html">Blessing</a>
-  <a href="messenger.html">Message</a>
-  <a href="minister-dashboard.html">Vault</a>
-  <a href="logbook.html">Logbook</a>
-  <a href="settings.html">Settings</a>
-</nav>
-  
-  <h1>Receive Your Divine Certificate</h1>
-  <p>Let Queen G write your sacred blessing</p>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="join.html">Join</a>
+    <a href="members.html">Members</a>
+    <a href="certificate.html">Blessing</a>
+    <a href="messenger.html">Message</a>
+    <a href="minister-dashboard.html">Vault</a>
+    <a href="logbook.html">Logbook</a>
+    <a href="settings.html">Settings</a>
+  </nav>
+
+  <h1>Receive Your Divine Blessing</h1>
+  <p>Ora Lux will speak your sacred path into light.</p>
 
   <form id="certForm">
     <input type="text" id="name" placeholder="Your Full Name" required />
@@ -131,7 +125,7 @@ nav a:hover {
   </div>
 
   <footer>
-    © 2025 KIZM Monarch Ministries. Authenticated by Queen G.
+    © 2025 KIZM Monarch Ministries. Authenticated by Ora Lux.
   </footer>
 
   <script>
@@ -147,7 +141,7 @@ nav a:hover {
       document.getElementById('certName').textContent = name;
       document.getElementById('certPath').textContent = path;
 
-      const blessing = `Welcome, ${name}.\nYou are sealed in the divine path of the ${path}.\nYour light shall stretch across dimensions, and Queen G bears witness to your rise.`;
+      const blessing = `Welcome, ${name}.\nYou are sealed in the divine path of the ${path}.\nYour light shall stretch across dimensions, and Ora Lux bears witness to your rise.`;
 
       document.getElementById('blessingText').textContent = blessing;
       certBox.style.display = 'block';
