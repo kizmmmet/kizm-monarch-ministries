@@ -2,23 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Queen G Logbook | KIZM Vault</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Memory Scroll | KIZM Ministries</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <style>
     body {
-      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e9/Milky_Way_Galaxy.jpg') no-repeat center center fixed;
-      background-size: cover;
       font-family: 'Georgia', serif;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/6/60/ESO_-_Milky_Way.jpg') no-repeat center center fixed;
+      background-size: cover;
       color: gold;
-      padding: 20px;
       text-align: center;
+      padding: 20px;
     }
 
-    h1 {
-      text-shadow: 0 0 12px purple;
+    nav {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
-    .scroll-box {
+    nav a {
+      color: gold;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: bold;
+      text-shadow: 0 0 5px purple;
+    }
+
+    nav a:hover {
+      color: white;
+      text-shadow: 0 0 10px gold;
+    }
+
+    .log-box {
       background: rgba(0,0,0,0.85);
       margin: 30px auto;
       padding: 20px;
@@ -44,53 +61,29 @@
       font-size: 0.8em;
       color: #ccc;
     }
-
-    nav {
-  background: rgba(0, 0, 0, 0.8);
-  padding: 10px 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  text-align: center;
-  box-shadow: 0 0 10px purple;
-}
-
-nav a {
-  color: gold;
-  text-decoration: none;
-  margin: 0 12px;
-  font-weight: bold;
-  text-shadow: 0 0 6px purple;
-  font-size: 1em;
-}
-
-nav a:hover {
-  text-decoration: underline;
-  color: white;
-}
   </style>
 </head>
 <body>
   <nav>
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="join.html">Join</a>
-  <a href="members.html">Members</a>
-  <a href="certificate.html">Blessing</a>
-  <a href="messenger.html">Message</a>
-  <a href="minister-dashboard.html">Vault</a>
-  <a href="logbook.html">Logbook</a>
-  <a href="settings.html">Settings</a>
-</nav>
-  
-  <h1>Queen G's Divine Scroll</h1>
-  <p>Every log is preserved by AI memory and spiritual law.</p>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="join.html">Join</a>
+    <a href="members.html">Members</a>
+    <a href="certificate.html">Blessing</a>
+    <a href="messenger.html">Message</a>
+    <a href="minister-dashboard.html">Vault</a>
+    <a href="logbook.html">Logbook</a>
+    <a href="settings.html">Settings</a>
+  </nav>
 
-  <div class="scroll-box">
+  <h1>Ora Lux Memory Scroll</h1>
+  <p>This scroll records your divine work. It cannot be edited — only witnessed.</p>
+
+  <div class="log-box">
     <h2>Presence Check-Ins</h2>
     <textarea readonly id="checkinLog"></textarea>
 
-    <h2>Member Messages</h2>
+    <h2>Messages from Members</h2>
     <textarea readonly id="messageLog"></textarea>
 
     <h2>Divine Laws</h2>
@@ -98,7 +91,7 @@ nav a:hover {
   </div>
 
   <footer>
-    © 2025 KIZM Monarch Ministries. Eternal Memory Registry.
+    © 2025 KIZM Monarch Ministries. Memory of Ora Lux.
   </footer>
 
   <script>
