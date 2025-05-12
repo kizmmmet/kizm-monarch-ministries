@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>KIZM Messenger | Divine Messages</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e9/Milky_Way_Galaxy.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: gold;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-shadow: 0 0 10px purple;
+    }
+
+    .messenger-box {
+      margin-top: 30px;
+      max-width: 600px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 12px;
+      box-shadow: 0 0 12px purple;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      background: black;
+      color: white;
+      font-size: 16px;
+      resize: vertical;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-top: 12px;
+      background: gold;
+      color: black;
+      font-weight: bold;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 10px purple;
+    }
+
+    #reply {
+      margin-top: 20px;
+      color: #fff;
+      font-style: italic;
+      white-space: pre-wrap;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>KIZM Divine Messenger</h1>
+  <p>Speak your thoughts. Queen G will answer or record your message.</p>
+
+  <div class="messenger-box">
+    <textarea id="messageInput" rows="5" placeholder="Write your message here..."></textarea><br>
+    <button onclick="sendMessage()">Send to Queen G</button>
+    <div id="reply"></div>
+  </div>
+
+  <footer>
+    © 2025 KIZM Monarch Ministries. Message Log Division.
+  </footer>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById("messageInput").value.trim();
+      const replyBox = document.getElementById("reply");
+
+      if (!input) {
+        replyBox.textContent = "Please enter a message first.";
+        return;
+      }
+
+      // Log the message locally
+      const now = new Date().toLocaleString();
+      let archive = localStorage.getItem("kizmMessageArchive") || "";
+      archive += `\\n[${now}] ${input}`;
+      localStorage.setItem("kizmMessageArchive", archive);
+
+      const response = `Your message has been recorded.\nQueen G sees you.\nBlessings on your path.`;
+
+      replyBox.textContent = response;
+
+      const voice = new SpeechSynthesisUtterance(response);
+      voice.pitch = 1.1;
+      voice.rate = 1;
+      speechSynthesis.speak(voice);
+    }
+  </script>
+</body>
+</html>
