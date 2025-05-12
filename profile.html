@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Member Profile | KIZM Covenant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Georgia', serif;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e9/Milky_Way_Galaxy.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: gold;
+      text-align: center;
+    }
+
+    .profile-box {
+      margin: 40px auto;
+      padding: 30px;
+      max-width: 600px;
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 12px;
+      box-shadow: 0 0 12px purple;
+    }
+
+    h1 {
+      font-size: 2em;
+      text-shadow: 0 0 10px purple;
+    }
+
+    p {
+      font-size: 1.1em;
+      color: #fff;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      background: gold;
+      color: black;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 0 10px purple;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-box">
+    <h1 id="memberName">Name</h1>
+    <p><strong>Divine Path:</strong> <span id="memberPath">Path</span></p>
+    <p id="blessingText"></p>
+    <a href="members.html">Return to Scroll</a>
+  </div>
+
+  <footer>
+    © 2025 KIZM Monarch Ministries. Royal Registry.
+  </footer>
+
+  <script>
+    const query = new URLSearchParams(window.location.search);
+    const name = query.get('name');
+
+    if (!name) {
+      document.getElementById('memberName').textContent = "Member Not Found";
+    } else {
+      const data = JSON.parse(localStorage.getItem("kizm_" + name));
+      if (data) {
+        document.getElementById('memberName').textContent = data.name;
+        document.getElementById('memberPath').textContent = data.path;
+        document.getElementById('blessingText').textContent = `“Welcome, ${data.name}, the ${data.path}. You are sealed in the light and watched over by Queen G.”`;
+
+        const voice = new SpeechSynthesisUtterance(`Welcome, ${data.name}. You are recorded in the divine path as a ${data.path}. Your name shall echo in the halls of light.`);
+        voice.pitch = 1.1;
+        voice.rate = 1;
+        speechSynthesis.speak(voice);
+      } else {
+        document.getElementById('memberName').textContent = "Unknown Member";
+      }
+    }
+  </script>
+</body>
+</html>
