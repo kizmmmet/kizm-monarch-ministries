@@ -1,1 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login | KIZM Ministries</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e9/Milky_Way_Galaxy.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Georgia', serif;
+      color: gold;
+      text-align: center;
+      padding: 40px 20px;
+    }
 
+    h1 {
+      font-size: 2.5em;
+      text-shadow: 0 0 10px purple;
+    }
+
+    .login-box {
+      max-width: 400px;
+      margin: 30px auto;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 12px;
+      box-shadow: 0 0 15px purple;
+    }
+
+    input {
+      width: 90%;
+      padding: 12px;
+      margin: 12px 0;
+      border-radius: 10px;
+      border: none;
+      background: black;
+      color: gold;
+      font-size: 1em;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: gold;
+      color: black;
+      font-weight: bold;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 10px purple;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-style: italic;
+    }
+
+    footer {
+      margin-top: 60px;
+      font-size: 0.8em;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="join.html">Join</a>
+  <a href="members.html">Members</a>
+  <a href="certificate.html">Blessing</a>
+  <a href="messenger.html">Message</a>
+  <a href="minister-dashboard.html">Vault</a>
+  <a href="logbook.html">Logbook</a>
+  <a href="settings.html">Settings</a>
+</nav>
+  
+  <h1>Login to KIZM Ministries</h1>
+
+  <div class="login-box">
+    <input type="text" id="username" placeholder="Username" /><br>
+    <input type="password" id="password" placeholder="Secret Phrase" /><br>
+    <button onclick="login()">Enter</button>
+    <div id="message"></div>
+  </div>
+
+  <footer>
+    © 2025 KIZM Monarch Ministries. Divine Access Portal.
+  </footer>
+
+  <script>
+    function login() {
+      const user = document.getElementById("username").value.trim().toLowerCase();
+      const pass = document.getElementById("password").value.trim().toLowerCase();
+      const msg = document.getElementById("message");
+
+      if (user === "grandminister" && pass === "divineintervention") {
+        msg.innerHTML = "Access granted. Redirecting...";
+        setTimeout(() => {
+          window.location.href = "minister-dashboard.html";
+        }, 1500);
+      } else {
+        msg.innerHTML = "Access denied. Please try again.";
+      }
+    }
+  </script>
+</body>
+</html>
