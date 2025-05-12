@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile Settings | KIZM Member</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e9/Milky_Way_Galaxy.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: gold;
+      padding: 30px;
+      text-align: center;
+    }
+
+    h1 {
+      text-shadow: 0 0 10px purple;
+    }
+
+    form {
+      background: rgba(0, 0, 0, 0.8);
+      max-width: 500px;
+      margin: 30px auto;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px purple;
+    }
+
+    input, select {
+      width: 90%;
+      padding: 12px;
+      margin: 12px 0;
+      border-radius: 10px;
+      border: none;
+      background: black;
+      color: gold;
+      font-size: 1em;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: gold;
+      color: black;
+      font-weight: bold;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 10px purple;
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 0.8em;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Update Your Member Profile</h1>
+  <form onsubmit="saveSettings(event)">
+    <input type="text" id="memberName" placeholder="Your Name" />
+    <select id="memberPath">
+      <option value="">Your Divine Path</option>
+      <option>Seeker</option>
+      <option>Messenger</option>
+      <option>Guardian</option>
+      <option>Oracle</option>
+    </select>
+    <select id="blessingVoice">
+      <option value="">Blessing Voice</option>
+      <option value="soft">Soft & Calm</option>
+      <option value="firm">Firm & Clear</option>
+      <option value="uplift">Uplifting & Vibrant</option>
+    </select>
+    <button type="submit">Save Settings</button>
+  </form>
+
+  <footer>
+    © 2025 KIZM Monarch Ministries. Divine Preference Sync.
+  </footer>
+
+  <script>
+    function saveSettings(e) {
+      e.preventDefault();
+      const name = document.getElementById("memberName").value.trim();
+      const path = document.getElementById("memberPath").value;
+      const tone = document.getElementById("blessingVoice").value;
+
+      const settings = { name, path, tone };
+      localStorage.setItem("kizmUserSettings", JSON.stringify(settings));
+      alert("Settings saved successfully.");
+    }
+  </script>
+</body>
+</html>
