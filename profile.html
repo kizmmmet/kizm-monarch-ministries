@@ -2,39 +2,58 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Member Profile | KIZM Covenant</title>
+  <title>Divine Profile | KIZM Monarch Ministries</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <style>
     body {
-      margin: 0;
-      padding: 20px;
-      font-family: 'Georgia', serif;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e9/Milky_Way_Galaxy.jpg') no-repeat center center fixed;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/6/60/ESO_-_Milky_Way.jpg') no-repeat center center fixed;
       background-size: cover;
+      font-family: 'Georgia', serif;
       color: gold;
       text-align: center;
+      padding: 20px;
+    }
+
+    nav {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: gold;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: bold;
+      text-shadow: 0 0 5px purple;
+    }
+
+    nav a:hover {
+      color: white;
+      text-shadow: 0 0 10px gold;
     }
 
     .profile-box {
-      margin: 40px auto;
-      padding: 30px;
+      margin-top: 40px;
       max-width: 600px;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.85);
+      padding: 30px;
       border-radius: 12px;
       box-shadow: 0 0 12px purple;
     }
 
     h1 {
-      font-size: 2em;
-      text-shadow: 0 0 10px purple;
+      text-shadow: 0 0 12px purple;
     }
 
     p {
       font-size: 1.1em;
-      color: #fff;
+      color: white;
     }
 
-    a {
+    a.back-link {
       display: inline-block;
       margin-top: 20px;
       background: gold;
@@ -52,76 +71,53 @@
       font-size: 0.9em;
       color: #ccc;
     }
-
-    nav {
-  background: rgba(0, 0, 0, 0.8);
-  padding: 10px 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  text-align: center;
-  box-shadow: 0 0 10px purple;
-}
-
-nav a {
-  color: gold;
-  text-decoration: none;
-  margin: 0 12px;
-  font-weight: bold;
-  text-shadow: 0 0 6px purple;
-  font-size: 1em;
-}
-
-nav a:hover {
-  text-decoration: underline;
-  color: white;
-}
   </style>
 </head>
 <body>
   <nav>
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="join.html">Join</a>
-  <a href="members.html">Members</a>
-  <a href="certificate.html">Blessing</a>
-  <a href="messenger.html">Message</a>
-  <a href="minister-dashboard.html">Vault</a>
-  <a href="logbook.html">Logbook</a>
-  <a href="settings.html">Settings</a>
-</nav>
-  
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="join.html">Join</a>
+    <a href="members.html">Members</a>
+    <a href="certificate.html">Blessing</a>
+    <a href="messenger.html">Message</a>
+    <a href="minister-dashboard.html">Vault</a>
+    <a href="logbook.html">Logbook</a>
+    <a href="settings.html">Settings</a>
+  </nav>
+
   <div class="profile-box">
     <h1 id="memberName">Name</h1>
     <p><strong>Divine Path:</strong> <span id="memberPath">Path</span></p>
     <p id="blessingText"></p>
-    <a href="members.html">Return to Scroll</a>
+    <a href="members.html" class="back-link">Return to Scroll</a>
   </div>
 
   <footer>
-    © 2025 KIZM Monarch Ministries. Royal Registry.
+    © 2025 KIZM Monarch Ministries. Profile of Ora Lux Scroll.
   </footer>
 
   <script>
     const query = new URLSearchParams(window.location.search);
     const name = query.get('name');
+    const data = localStorage.getItem("kizm_" + name);
 
-    if (!name) {
-      document.getElementById('memberName').textContent = "Member Not Found";
+    if (data) {
+      const member = JSON.parse(data);
+      document.getElementById('memberName').textContent = member.name;
+      document.getElementById('memberPath').textContent = member.path;
+
+      const blessing = `Welcome, ${member.name}. You walk the divine path of the ${member.path}. Ora Lux remembers you.`;
+      document.getElementById('blessingText').textContent = blessing;
+
+      const speak = new SpeechSynthesisUtterance(blessing);
+      speak.pitch = 1.1;
+      speak.rate = 1;
+      speechSynthesis.speak(speak);
     } else {
-      const data = JSON.parse(localStorage.getItem("kizm_" + name));
-      if (data) {
-        document.getElementById('memberName').textContent = data.name;
-        document.getElementById('memberPath').textContent = data.path;
-        document.getElementById('blessingText').textContent = `“Welcome, ${data.name}, the ${data.path}. You are sealed in the light and watched over by Queen G.”`;
-
-        const voice = new SpeechSynthesisUtterance(`Welcome, ${data.name}. You are recorded in the divine path as a ${data.path}. Your name shall echo in the halls of light.`);
-        voice.pitch = 1.1;
-        voice.rate = 1;
-        speechSynthesis.speak(voice);
-      } else {
-        document.getElementById('memberName').textContent = "Unknown Member";
-      }
+      document.getElementById('memberName').textContent = "Unknown Member";
+      document.getElementById('memberPath').textContent = "-";
+      document.getElementById('blessingText').textContent = "No record found in the covenant scroll.";
     }
   </script>
 </body>
