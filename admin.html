@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Admin Panel | KIZM Control</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vault Viewer | KIZM Ministries</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="admin-lock.js"></script>
   <style>
     body {
-      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e9/Milky_Way_Galaxy.jpg') no-repeat center center fixed;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/6/60/ESO_-_Milky_Way.jpg') no-repeat center center fixed;
       background-size: cover;
       font-family: 'Georgia', serif;
       color: gold;
@@ -15,26 +16,25 @@
     }
 
     h1 {
-      text-shadow: 0 0 10px purple;
+      text-shadow: 0 0 12px purple;
     }
 
-    .log-box {
-      max-width: 700px;
+    .vault-box {
       margin: 30px auto;
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(0,0,0,0.85);
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 0 12px purple;
-      overflow-wrap: break-word;
+      max-width: 800px;
     }
 
     textarea {
       width: 100%;
       height: 200px;
-      background: #111;
+      background: black;
       color: gold;
-      border-radius: 10px;
       border: 1px solid gold;
+      border-radius: 10px;
       padding: 10px;
       font-family: monospace;
       margin-bottom: 20px;
@@ -42,69 +42,34 @@
 
     footer {
       margin-top: 50px;
-      font-size: 0.8em;
       color: #ccc;
+      font-size: 0.9em;
     }
-
-    nav {
-  background: rgba(0, 0, 0, 0.8);
-  padding: 10px 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  text-align: center;
-  box-shadow: 0 0 10px purple;
-}
-
-nav a {
-  color: gold;
-  text-decoration: none;
-  margin: 0 12px;
-  font-weight: bold;
-  text-shadow: 0 0 6px purple;
-  font-size: 1em;
-}
-
-nav a:hover {
-  text-decoration: underline;
-  color: white;
-}
   </style>
 </head>
 <body>
-  <nav>
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="join.html">Join</a>
-  <a href="members.html">Members</a>
-  <a href="certificate.html">Blessing</a>
-  <a href="messenger.html">Message</a>
-  <a href="minister-dashboard.html">Vault</a>
-  <a href="logbook.html">Logbook</a>
-  <a href="settings.html">Settings</a>
-</nav>
-  
-  <h1>KIZM Admin Panel</h1>
-  <p>Full view of Queen G’s memory vault.</p>
+  <h1>Minister Vault Viewer</h1>
+  <p>Read all recorded messages, laws, and data stored by Ora Lux.</p>
 
-  <div class="log-box">
+  <div class="vault-box">
+    <h2>Messages</h2>
+    <textarea readonly id="messages"></textarea>
+
     <h2>Divine Laws</h2>
-    <textarea readonly id="lawLog"></textarea>
+    <textarea readonly id="laws"></textarea>
 
-    <h2>Messages from Members</h2>
-    <textarea readonly id="msgLog"></textarea>
+    <h2>Check-Ins</h2>
+    <textarea readonly id="checkins"></textarea>
   </div>
 
   <footer>
-    © 2025 KIZM Monarch Ministries. System Monitor.
+    © 2025 KIZM Monarch Ministries | Private Vault Access by Ora Lux
   </footer>
 
   <script>
-    const lawLog = localStorage.getItem("queenGVaultLog") || "No laws recorded.";
-    const msgLog = localStorage.getItem("kizmMessageArchive") || "No messages received.";
-
-    document.getElementById("lawLog").value = lawLog;
-    document.getElementById("msgLog").value = msgLog;
+    document.getElementById('messages').value = localStorage.getItem("kizmMessageArchive") || "No messages.";
+    document.getElementById('laws').value = localStorage.getItem("queenGVaultLog") || "No divine laws.";
+    document.getElementById('checkins').value = localStorage.getItem("kizmCheckinLog") || "No check-ins yet.";
   </script>
 </body>
 </html>
