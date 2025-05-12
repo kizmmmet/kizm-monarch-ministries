@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Queen G Logbook | KIZM Vault</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e9/Milky_Way_Galaxy.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Georgia', serif;
+      color: gold;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      text-shadow: 0 0 12px purple;
+    }
+
+    .scroll-box {
+      background: rgba(0,0,0,0.85);
+      margin: 30px auto;
+      padding: 20px;
+      max-width: 700px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px purple;
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      background: #111;
+      color: gold;
+      border-radius: 10px;
+      border: 1px solid gold;
+      padding: 10px;
+      font-family: monospace;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.8em;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Queen G's Divine Scroll</h1>
+  <p>Every log is preserved by AI memory and spiritual law.</p>
+
+  <div class="scroll-box">
+    <h2>Presence Check-Ins</h2>
+    <textarea readonly id="checkinLog"></textarea>
+
+    <h2>Member Messages</h2>
+    <textarea readonly id="messageLog"></textarea>
+
+    <h2>Divine Laws</h2>
+    <textarea readonly id="lawLog"></textarea>
+  </div>
+
+  <footer>
+    © 2025 KIZM Monarch Ministries. Eternal Memory Registry.
+  </footer>
+
+  <script>
+    document.getElementById('checkinLog').value = localStorage.getItem("kizmCheckinLog") || "No check-ins recorded.";
+    document.getElementById('messageLog').value = localStorage.getItem("kizmMessageArchive") || "No messages received.";
+    document.getElementById('lawLog').value = localStorage.getItem("queenGVaultLog") || "No divine laws recorded.";
+  </script>
+</body>
+</html>
