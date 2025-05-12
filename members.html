@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Members | KIZM Covenant Scroll</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Georgia', serif;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e9/Milky_Way_Galaxy.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: gold;
+      text-align: center;
+    }
+
+    h1 {
+      text-shadow: 0 0 12px purple;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 30px auto;
+      max-width: 600px;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    li {
+      margin: 12px 0;
+      font-size: 1.2em;
+    }
+
+    a {
+      color: gold;
+      text-decoration: none;
+      font-weight: bold;
+      text-shadow: 0 0 5px purple;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>KIZM Covenant Members</h1>
+  <p>These are the names written in the divine scroll.</p>
+
+  <ul id="memberList"></ul>
+
+  <footer>
+    © 2025 KIZM Monarch Ministries. Scroll of Names.
+  </footer>
+
+  <script>
+    const memberList = document.getElementById('memberList');
+
+    // Pull all keys starting with "kizm_"
+    Object.keys(localStorage).forEach(key => {
+      if (key.startsWith('kizm_')) {
+        const member = JSON.parse(localStorage.getItem(key));
+        const li = document.createElement('li');
+
+        li.innerHTML = `<a href="profile.html?name=${encodeURIComponent(member.name)}">${member.name} – ${member.path}</a>`;
+        memberList.appendChild(li);
+      }
+    });
+  </script>
+</body>
+</html>
