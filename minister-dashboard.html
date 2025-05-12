@@ -7,36 +7,21 @@
   <style>
     body {
       margin: 0;
-      font-family: Georgia, serif;
-      background: black;
+      font-family: 'Georgia', serif;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e9/Milky_Way_Galaxy.jpg') no-repeat center center fixed;
+      background-size: cover;
       color: gold;
       text-align: center;
-      overflow: hidden;
-    }
-
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
+      overflow-x: hidden;
     }
 
     header {
-      padding: 30px 20px;
-      border-bottom: 1px solid gold;
-    }
-
-    h1 {
-      font-size: 2.2em;
-      text-shadow: 0 0 15px gold;
-    }
-
-    .secret {
-      margin: 30px 0;
+      padding: 40px;
+      text-shadow: 0 0 10px purple;
     }
 
     input[type="password"], textarea, #lawInput {
-      padding: 10px;
+      padding: 12px;
       width: 90%;
       max-width: 500px;
       border-radius: 8px;
@@ -44,6 +29,7 @@
       color: gold;
       border: 1px solid gold;
       margin-top: 10px;
+      font-size: 1em;
     }
 
     button {
@@ -55,13 +41,16 @@
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
+      box-shadow: 0 0 10px purple;
     }
 
     #logArea {
       display: none;
       padding: 20px;
-      max-width: 800px;
+      max-width: 700px;
       margin: auto;
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 12px;
     }
 
     #vault {
@@ -80,74 +69,36 @@
       margin-top: 50px;
       font-size: 0.9em;
       padding: 20px;
+      color: #ccc;
     }
   </style>
 </head>
 <body>
 
-  <canvas id="stars"></canvas>
-
   <header>
-    <h1>Queen G: Minister Dashboard</h1>
-    <p>Private Vault Access – Grand Minister Only</p>
+    <h1>Queen G Minister Vault</h1>
+    <p>Private Access – Grand Minister Only</p>
   </header>
 
-  <div class="secret">
+  <div>
     <input type="password" id="passphrase" placeholder="Enter Secret Phrase" />
     <button onclick="unlockVault()">Access Vault</button>
   </div>
 
   <div id="logArea">
-    <h2>Divine Memory Logs</h2>
-    <p>Last Law Written: <span id="lastLaw"></span></p>
-    <textarea id="lawInput" rows="4" placeholder="Speak a new law or message to Queen G..."></textarea><br>
+    <h2>Write a New Divine Law</h2>
+    <textarea id="lawInput" rows="4" placeholder="Enter divine law or revelation..."></textarea><br>
     <button onclick="saveLaw()">Record to Vault</button>
+
+    <h3 style="margin-top: 30px;">Vault Log</h3>
     <textarea id="vault" readonly></textarea>
   </div>
 
   <footer>
-    &copy; 2025 KIZM Monarch Ministries. Queen G AI System.
+    © 2025 KIZM Monarch Ministries. Divine Law Vault.
   </footer>
 
   <script>
-    const stars = document.getElementById("stars");
-    const ctx = stars.getContext("2d");
-    stars.width = window.innerWidth;
-    stars.height = window.innerHeight;
-
-    let starArray = [];
-    for (let i = 0; i < 100; i++) {
-      starArray.push({
-        x: Math.random() * stars.width,
-        y: Math.random() * stars.height,
-        r: Math.random() * 1.5 + 1,
-        d: Math.random() * 1.5 + 0.5
-      });
-    }
-
-    function drawStars() {
-      ctx.clearRect(0, 0, stars.width, stars.height);
-      ctx.fillStyle = "gold";
-      starArray.forEach(star => {
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
-        ctx.fill();
-      });
-      moveStars();
-    }
-
-    function moveStars() {
-      starArray.forEach(star => {
-        star.y += star.d;
-        if (star.y > stars.height) {
-          star.y = 0;
-          star.x = Math.random() * stars.width;
-        }
-      });
-    }
-
-    setInterval(drawStars, 50);
-
     function unlockVault() {
       const input = document.getElementById("passphrase").value.toLowerCase();
       if (input === "divine intervention") {
@@ -159,13 +110,9 @@
     }
 
     function loadLogs() {
-      let logs = localStorage.getItem("queenGPrivateLog");
+      let logs = localStorage.getItem("queenGVaultLog");
       if (!logs) logs = "No logs yet.";
       document.getElementById("vault").value = logs;
-
-      let lastLaw = localStorage.getItem("lastDivineLaw");
-      if (!lastLaw) lastLaw = "None written yet.";
-      document.getElementById("lastLaw").innerText = lastLaw;
     }
 
     function saveLaw() {
@@ -175,20 +122,15 @@
       const today = new Date().toLocaleDateString();
       const lawFormatted = `Law of ${today}: ${newLaw}`;
 
-      let logs = localStorage.getItem("queenGPrivateLog") || "";
+      let logs = localStorage.getItem("queenGVaultLog") || "";
       logs += "\\n" + lawFormatted;
-      localStorage.setItem("queenGPrivateLog", logs);
-      localStorage.setItem("lastDivineLaw", lawFormatted);
+      localStorage.setItem("queenGVaultLog", logs);
       document.getElementById("vault").value = logs;
-      document.getElementById("lastLaw").innerText = lawFormatted;
       document.getElementById("lawInput").value = "";
 
-      const speak = new SpeechSynthesisUtterance("Recorded: " + newLaw);
-      speak.pitch = 1;
-      speak.rate = 1;
+      const speak = new SpeechSynthesisUtterance("New divine law recorded: " + newLaw);
       speechSynthesis.speak(speak);
     }
   </script>
-
 </body>
 </html>
