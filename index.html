@@ -28,6 +28,7 @@
       box-shadow: 0 0 10px purple;
       cursor: pointer;
       text-decoration: none;
+      display: inline-block;
     }
 
     .avatar {
@@ -46,19 +47,26 @@
       transform: scale(1.05);
     }
 
+    #chatBox {
+      margin-top: 30px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     textarea {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       border-radius: 10px;
       border: none;
       resize: none;
-    }
-    
-    .chat-container {
-      margin-top: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      background-color: black;
+      color: white;
+      font-size: 16px;
     }
 
     footer {
@@ -66,6 +74,12 @@
       padding: 20px;
       font-size: 0.8em;
       color: #ccc;
+    }
+
+    #chatResponse {
+      color: white;
+      margin-top: 15px;
+      font-size: 16px;
     }
   </style>
 </head>
@@ -88,10 +102,10 @@
     <div class="avatar" onclick="openGreeting()"></div>
   </section>
 
-  <div id="chatBox" class="chat-box" style="display:none;">
+  <div id="chatBox" style="display:none;">
     <textarea id="userInput" rows="3" placeholder="Ask Queen G anything..."></textarea><br>
     <button class="btn" onclick="askQueenG()">Ask</button>
-    <div id="chatResponse" style="margin-top: 10px;"></div>
+    <div id="chatResponse"></div>
   </div>
 
   <section style="margin-top: 50px;">
@@ -135,7 +149,6 @@
 
       const data = await response.json();
       const message = data.choices?.[0]?.message?.content || "Queen G is silent right now.";
-
       responseBox.innerHTML = message;
 
       const speak = new SpeechSynthesisUtterance(message);
