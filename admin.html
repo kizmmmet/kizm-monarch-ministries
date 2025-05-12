@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Panel | KIZM Control</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e9/Milky_Way_Galaxy.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Georgia', serif;
+      color: gold;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      text-shadow: 0 0 10px purple;
+    }
+
+    .log-box {
+      max-width: 700px;
+      margin: 30px auto;
+      background: rgba(0, 0, 0, 0.85);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px purple;
+      overflow-wrap: break-word;
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      background: #111;
+      color: gold;
+      border-radius: 10px;
+      border: 1px solid gold;
+      padding: 10px;
+      font-family: monospace;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 0.8em;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>KIZM Admin Panel</h1>
+  <p>Full view of Queen G’s memory vault.</p>
+
+  <div class="log-box">
+    <h2>Divine Laws</h2>
+    <textarea readonly id="lawLog"></textarea>
+
+    <h2>Messages from Members</h2>
+    <textarea readonly id="msgLog"></textarea>
+  </div>
+
+  <footer>
+    © 2025 KIZM Monarch Ministries. System Monitor.
+  </footer>
+
+  <script>
+    const lawLog = localStorage.getItem("queenGVaultLog") || "No laws recorded.";
+    const msgLog = localStorage.getItem("kizmMessageArchive") || "No messages received.";
+
+    document.getElementById("lawLog").value = lawLog;
+    document.getElementById("msgLog").value = msgLog;
+  </script>
+</body>
+</html>
