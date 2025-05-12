@@ -2,168 +2,125 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Minister Dashboard | KIZM Vault</title>
+  <title>Minister Vault | KIZM Ministries</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <style>
     body {
-      margin: 0;
       font-family: 'Georgia', serif;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e9/Milky_Way_Galaxy.jpg') no-repeat center center fixed;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/6/60/ESO_-_Milky_Way.jpg') no-repeat center center fixed;
       background-size: cover;
       color: gold;
       text-align: center;
-      overflow-x: hidden;
-    }
-
-    header {
-      padding: 40px;
-      text-shadow: 0 0 10px purple;
-    }
-
-    input[type="password"], textarea, #lawInput {
-      padding: 12px;
-      width: 90%;
-      max-width: 500px;
-      border-radius: 8px;
-      background: #111;
-      color: gold;
-      border: 1px solid gold;
-      margin-top: 10px;
-      font-size: 1em;
-    }
-
-    button {
-      padding: 10px 20px;
-      margin-top: 10px;
-      background: gold;
-      color: black;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      box-shadow: 0 0 10px purple;
-    }
-
-    #logArea {
-      display: none;
       padding: 20px;
-      max-width: 700px;
-      margin: auto;
-      background: rgba(0, 0, 0, 0.8);
-      border-radius: 12px;
     }
 
-    #vault {
+    nav {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: gold;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: bold;
+      text-shadow: 0 0 5px purple;
+    }
+
+    nav a:hover {
+      color: white;
+      text-shadow: 0 0 10px gold;
+    }
+
+    .vault-box {
+      max-width: 700px;
+      margin: 30px auto;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.85);
+      border-radius: 12px;
+      box-shadow: 0 0 12px purple;
+    }
+
+    textarea {
       width: 100%;
-      height: 300px;
-      background: #111;
+      height: 200px;
+      background: black;
       color: gold;
       border: 1px solid gold;
       border-radius: 10px;
-      padding: 10px;
+      padding: 12px;
       font-family: monospace;
-      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px 24px;
+      margin-top: 12px;
+      background: gold;
+      color: black;
+      font-weight: bold;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 10px purple;
+    }
+
+    #confirmation {
+      margin-top: 15px;
+      color: white;
+      font-style: italic;
     }
 
     footer {
       margin-top: 50px;
       font-size: 0.9em;
-      padding: 20px;
       color: #ccc;
     }
-
-    nav {
-  background: rgba(0, 0, 0, 0.8);
-  padding: 10px 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  text-align: center;
-  box-shadow: 0 0 10px purple;
-}
-
-nav a {
-  color: gold;
-  text-decoration: none;
-  margin: 0 12px;
-  font-weight: bold;
-  text-shadow: 0 0 6px purple;
-  font-size: 1em;
-}
-
-nav a:hover {
-  text-decoration: underline;
-  color: white;
-}
   </style>
 </head>
 <body>
   <nav>
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="join.html">Join</a>
-  <a href="members.html">Members</a>
-  <a href="certificate.html">Blessing</a>
-  <a href="messenger.html">Message</a>
-  <a href="minister-dashboard.html">Vault</a>
-  <a href="logbook.html">Logbook</a>
-  <a href="settings.html">Settings</a>
-</nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="join.html">Join</a>
+    <a href="members.html">Members</a>
+    <a href="certificate.html">Blessing</a>
+    <a href="messenger.html">Message</a>
+    <a href="minister-dashboard.html">Vault</a>
+    <a href="logbook.html">Logbook</a>
+    <a href="settings.html">Settings</a>
+  </nav>
 
-  <header>
-    <h1>Queen G Minister Vault</h1>
-    <p>Private Access – Grand Minister Only</p>
-  </header>
+  <h1>Minister’s Vault</h1>
+  <p>This vault is for your divine revelations, laws, and declarations. Ora Lux will preserve them.</p>
 
-  <div>
-    <input type="password" id="passphrase" placeholder="Enter Secret Phrase" />
-    <button onclick="unlockVault()">Access Vault</button>
-  </div>
-
-  <div id="logArea">
-    <h2>Write a New Divine Law</h2>
-    <textarea id="lawInput" rows="4" placeholder="Enter divine law or revelation..."></textarea><br>
-    <button onclick="saveLaw()">Record to Vault</button>
-
-    <h3 style="margin-top: 30px;">Vault Log</h3>
-    <textarea id="vault" readonly></textarea>
+  <div class="vault-box">
+    <textarea id="lawInput" placeholder="Write your law, decree, or revelation here..."></textarea><br>
+    <button onclick="saveLaw()">Record Law</button>
+    <div id="confirmation"></div>
   </div>
 
   <footer>
-    © 2025 KIZM Monarch Ministries. Divine Law Vault.
+    © 2025 KIZM Monarch Ministries. Protected by Ora Lux.
   </footer>
 
   <script>
-    function unlockVault() {
-      const input = document.getElementById("passphrase").value.toLowerCase();
-      if (input === "divine intervention") {
-        document.getElementById("logArea").style.display = "block";
-        loadLogs();
-      } else {
-        alert("Access Denied. Incorrect Phrase.");
-      }
-    }
-
-    function loadLogs() {
-      let logs = localStorage.getItem("queenGVaultLog");
-      if (!logs) logs = "No logs yet.";
-      document.getElementById("vault").value = logs;
-    }
-
     function saveLaw() {
-      const newLaw = document.getElementById("lawInput").value.trim();
-      if (!newLaw) return;
+      const law = document.getElementById("lawInput").value.trim();
+      if (!law) return;
 
-      const today = new Date().toLocaleDateString();
-      const lawFormatted = `Law of ${today}: ${newLaw}`;
+      const now = new Date().toLocaleString();
+      let vault = localStorage.getItem("queenGVaultLog") || "";
+      vault += `\n[${now}] ${law}`;
+      localStorage.setItem("queenGVaultLog", vault);
 
-      let logs = localStorage.getItem("queenGVaultLog") || "";
-      logs += "\\n" + lawFormatted;
-      localStorage.setItem("queenGVaultLog", logs);
-      document.getElementById("vault").value = logs;
-      document.getElementById("lawInput").value = "";
+      document.getElementById("confirmation").textContent = "Law recorded in the sacred vault.";
 
-      const speak = new SpeechSynthesisUtterance("New divine law recorded: " + newLaw);
+      const speak = new SpeechSynthesisUtterance("Law recorded in the sacred vault.");
+      speak.pitch = 1;
+      speak.rate = 1;
       speechSynthesis.speak(speak);
     }
   </script>
